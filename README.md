@@ -9,19 +9,15 @@ This project focuses on the mathematical implementation and real-time visualizat
 
 ## Technical Implementation: De Casteljau’s Algorithm
 
-The core of the Bézier evaluation is based on De Casteljau's algorithm, a numerically stable method to evaluate parametric curves. While theoretically recursive, the algorithm is implemented iteratively to optimize performance and stack usage, which is a standard practice in real-time graphics.
-
-### **Technical Implementation: De Casteljau’s Algorithm**
-
 The core of the Bézier evaluation system is based on **De Casteljau's algorithm**, a numerically stable method used to obtain the points of a parametric curve $f(t)$ through geometric construction. While the algorithm is theoretically recursive, it has been implemented **iteratively** in this project to optimize performance and stack usage, which is a critical requirement for real-time graphics applications.
 
-#### **1. Mathematical Evaluation & Discretization**
+### **1. Mathematical Evaluation & Discretization**
 Since a Bézier curve is a continuous function, it must be discretized into a **polyline** for visualization.The implementation samples the curve at **$N=201$ equidistant points** along the parameter $t \in [0, 1]$. 
 
 For each point, the algorithm performs successive linear interpolations (**LERP**) between control points until a single point on the curve is reached. The recursive LERP process follows this logic:
 $$P_i^k = (1 - t)P_i^{k-1} + tP_{i+1}^{k-1}$$
 
-#### **2. Core Algorithm Implementation (C++)**
+### **2. Core Algorithm Implementation (C++)**
 The following function evaluates the curve's coordinates for a specific parameter $t$. The outer loop manages the levels of interpolation, while the inner loop computes the LERP between adjacent points.
 
 ```cpp
@@ -73,22 +69,22 @@ void drawScene_deCasteljau(void) {
     }
 }
 ```
-### **Real-Time Interaction: Interactive Control Point Manipulation**
+## **Real-Time Interaction: Interactive Control Point Manipulation**
 
 To provide an intuitive modeling experience, the application implements a **dynamic mouse-drag system**. This allows users to reshape curves in real-time by interacting directly with the control points (CP).
 
-#### **1. Interaction State Management**
+### **1. Interaction State Management**
 The system logic is integrated into the **GLFW callback system** (specifically within `gestione_callback.cpp`). The interaction state is managed via two primary variables:
 * `isDragging` (**bool**): Tracks whether a drag operation is currently active.
 * `selectedPoint` (**int**): Stores the index of the point being manipulated (set to `-1` when idle).
 
-#### **2. Input Logic & Proximity Selection**
+### **2. Input Logic & Proximity Selection**
 The `mouse_button_callback` distinguishes between **creating** a new point and **editing** an existing one. It uses a proximity-based selection logic:
 1. When a click occurs, the system calculates the **Euclidean distance** between the cursor and all existing control points.
 2. If the distance is below a specific **threshold** ($0.05f$), that point is selected for dragging.
 3. If no point is within range, a new control point is spawned at the cursor's coordinates.
 
-#### **3. Mouse Button Callback (C++)**
+### **3. Mouse Button Callback (C++)**
 ```cpp
 void mouse_button_callback(GLFWwindow* window, int button, int action, int mods) {
     if (button == GLFW_MOUSE_BUTTON_LEFT) {
@@ -123,13 +119,13 @@ void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
     }
 }
 ```
-### **Piecewise Bézier Curves & Catmull-Rom Splines**
+## **Piecewise Bézier Curves & Catmull-Rom Splines**
 
 Unlike a single high-degree Bézier curve, this project implements **piecewise Bézier curves** to ensure a more stable and predictable behavior. This approach provides **local control**: modifying one control point only affects the adjacent segments rather than the entire curve.
 
 To guarantee that the curve passes exactly through the control points (**interpolation**) while maintaining a smooth transition, I implemented the **Catmull-Rom Spline** algorithm, ensuring **$C^1$ continuity** (velocity continuity) at each junction.
 
-#### **1. Mathematical Conversion to Cubic Bézier**
+### **1. Mathematical Conversion to Cubic Bézier**
 For each segment between $P_i$ and $P_{i+1}$, the algorithm constructs a cubic Bézier curve. This requires calculating two additional internal control points, $P_i^+$ and $P_{i+1}^-$, based on the tangents ($m_i$) at the junctions:
 
 **Tangent Calculation:**
@@ -139,14 +135,14 @@ $$m_i = \frac{P_{i+1} - P_{i-1}}{2}$$
 $$P_i^{+} = P_{i} + \frac{m_i}{3}$$
 $$P_{i+1}^{-} = P_{i+1} - \frac{m_{i+1}}{3}$$
 
-#### **2. Algorithmic Steps**
+### **2. Algorithmic Steps**
 The implementation iterates through each segment $(P_i, P_{i+1})$ and performs the following:
 1. **Point Identification**: Selects the four required points $(P_{i-1}, P_i, P_{i+1}, P_{i+2})$, handling boundary conditions at the curve's endpoints.
 2. **Tangent Computation**: Calculates the slopes $m_i$ and $m_{i+1}$.
 3. **Bézier Mapping**: Converts the spline data into the 4 control points of a cubic Bézier segment (`temp_bezier`).
 4. **Sampling & Rendering**: Discretizes the segment by invoking the De Casteljau algorithm and storing the resulting vertices.
 
-#### **3. Implementation Snippet (C++)**
+### **3. Implementation Snippet (C++)**
 ```cpp
 if (NumPts > 1) {
     float result_dc[2];
