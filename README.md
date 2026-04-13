@@ -8,10 +8,10 @@ This project focuses on the mathematical implementation and real-time visualizat
 *Developed as part of the Fundamentals of Computer Graphics course in Computer Engineering in Alma Mater Studiorum, Bologna, Italy.*
 
 ## Technical Implementation: De Casteljau’s Algorithm
-
+![Drawing of a Bezier Curve with the De Casteljau's Algorithm](img/decasteljau.gif)
 The core of the Bézier evaluation system is based on **De Casteljau's algorithm**, a numerically stable method used to obtain the points of a parametric curve $f(t)$ through geometric construction. While the algorithm is theoretically recursive, it has been implemented **iteratively** in this project to optimize performance and stack usage, which is a critical requirement for real-time graphics applications.
 
-### **1. Mathematical Evaluation & Discretization**
+### **1. Mathematical Evaluation**
 Since a Bézier curve is a continuous function, it must be discretized into a **polyline** for visualization.The implementation samples the curve at **$N=201$ equidistant points** along the parameter $t \in [0, 1]$. 
 
 For each point, the algorithm performs successive linear interpolations (**LERP**) between control points until a single point on the curve is reached. The recursive LERP process follows this logic:
