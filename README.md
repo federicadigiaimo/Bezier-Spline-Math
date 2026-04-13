@@ -1,5 +1,17 @@
 # Interactive curves and Geometric continuity
 ## Project Objectives
+<table align="center">
+  <tr>
+    <td align="center">
+      <img src="img/Es.3.png" width="400px" alt="Bézier Curve"/><br />
+      <sub><b>Bézier Evaluation</b></sub>
+    </td>
+    <td align="center">
+      <img src="img/Es.5a.png" width="400px" alt="Catmull-Rom Spline"/><br />
+      <sub><b>Catmull-Rom Interpolation</b></sub>
+    </td>
+  </tr>
+</table>
 This project focuses on the mathematical implementation and real-time visualization of parametric curves. The following core features were implemented as part of the computational geometry study:
 * **Bézier Curve Evaluation**: Implementation of the **de Casteljau** algorithm to generate curves from a set of user-defined control points (CP).
 * **Dynamic Control Point Manipulation**: Interactive modification of the curve's shape via real-time mouse-drag callbacks.
