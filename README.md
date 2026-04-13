@@ -11,7 +11,6 @@ This project focuses on the mathematical implementation and real-time visualizat
 
 The core of the Bézier evaluation is based on De Casteljau's algorithm, a numerically stable method to evaluate parametric curves. While theoretically recursive, the algorithm is implemented iteratively to optimize performance and stack usage, which is a standard practice in real-time graphics.
 
-### Mathematical Evaluation
 ### **Technical Implementation: De Casteljau’s Algorithm**
 
 The core of the Bézier evaluation system is based on **De Casteljau's algorithm**, a numerically stable method used to obtain the points of a parametric curve $f(t)$ through geometric construction. While the algorithm is theoretically recursive, it has been implemented **iteratively** in this project to optimize performance and stack usage, which is a critical requirement for real-time graphics applications.
@@ -49,4 +48,28 @@ void de_casteljau_alghoritm(float t, float* result, int num_points, float points
     result[0] = cord_X[0];
     result[1] = cord_Y[0];
 }
+```
 
+###3. Integration in the Rendering Loop
+
+The drawScene function manages the discretization process. It iterates through the defined steps (200 segments), invoking the algorithm for each t to update the vertex arrays used for rendering.
+```cpp
+void drawScene_deCasteljau(void) {
+    if (NumPts > 1) {
+        float result_dc[2];
+        int steps_per_segment = 200; // Number of steps for discretization
+
+        for (int j = 0; j <= steps_per_segment; j++) {
+            // Calculate parameter t and evaluate position
+            de_casteljau_alghoritm((GLfloat)j / steps_per_segment, result_dc, NumPts, vPositions_CP);
+            
+            // Store results in the vertex buffer for OpenGL rendering
+            if (index_cat < MaxNumPts) {
+                vPositions_C[index_cat][0] = result_dc[0];
+                vPositions_C[index_cat][1] = result_dc[1];
+                index_cat++;
+            }
+        }
+    }
+}
+```
