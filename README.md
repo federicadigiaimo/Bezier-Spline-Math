@@ -3,11 +3,11 @@
 <table align="center">
   <tr>
     <td align="center">
-      <img src="img/Es.3.png" width="400px" alt="Bézier Curve"/><br />
+      <img src="img/decasteljau_result.png" width="400px" alt="Bézier Curve"/><br />
       <sub><b>Bézier Evaluation</b></sub>
     </td>
     <td align="center">
-      <img src="img/Es.5a.png" width="400px" alt="Catmull-Rom Spline"/><br />
+      <img src="img/catmullrom_result.png" width="400px" alt="Catmull-Rom Spline"/><br />
       <sub><b>Catmull-Rom Interpolation</b></sub>
     </td>
   </tr>
