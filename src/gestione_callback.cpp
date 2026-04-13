@@ -15,7 +15,6 @@ extern int      selectedPoint;
 // process keyboard input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods) {
 
-    // Se il tasto ESCAPE è premuto, chiude la finestra
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
         glfwSetWindowShouldClose(window, true);
     
@@ -44,7 +43,6 @@ void cursor_position_callback(GLFWwindow* window, double x, double y) {
         vPositions_CP[selectedPoint][0] = xPos;
         vPositions_CP[selectedPoint][1] = yPos;
     }
-    // Visualizza le coordinate del mouse che si muove sulla finestra grafica    
     //   std::cout << "Mouse Coordinates : x = " << xpos << ", y = " << ypos << std::endl;
 }
 
@@ -54,7 +52,6 @@ void cursor_position_callback(GLFWwindow* window, double x, double y) {
     float xPos = -1.0f + ((float)x) * 2 / ((float)(width));
     float yPos = -1.0f + ((float)(height - y)) * 2 / ((float)(height));
 
-    // Visualizza le coordinate del mouse che si muove sulla finestra grafica    
     //   std::cout << "Mouse Coordinates : x = " << xpos << ", y = " << ypos << std::endl;
 }*/
 
@@ -74,7 +71,7 @@ void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
             float threshold = 0.05f;
             selectedPoint = -1;
 
-            //Vedo se devo trascinare un punto già presente oppure aggiungerne uno nuovo
+            //Vedo se devo trascinare un punto giÃ  presente oppure aggiungerne uno nuovo
             for (int i = 0; i < NumPts; ++i)
             {
                 float dx = vPositions_CP[i][0] - xPos;
