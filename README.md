@@ -127,6 +127,11 @@ void mouse_button_callback(GLFWwindow* window, int button, int action, int mods)
 ```
 ## **Piecewise Bézier Curves & Catmull-Rom Splines**
 
+<p align="center">
+  <img src="img/catmullrom.gif" width="400" alt="Drawing a curve with Catmull Rom Splines.">
+</p>
+
+
 Unlike a single high-degree Bézier curve, this project implements **piecewise Bézier curves** to ensure a more stable and predictable behavior. This approach provides **local control**: modifying one control point only affects the adjacent segments rather than the entire curve.
 
 To guarantee that the curve passes exactly through the control points (**interpolation**) while maintaining a smooth transition, I implemented the **Catmull-Rom Spline** algorithm, ensuring **$C^1$ continuity** (velocity continuity) at each junction.
