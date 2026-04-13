@@ -1,0 +1,16 @@
+# --- VS Code ---
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+.history/
+
+# --- C++ / Build Artifacts ---
+*.o
+*.obj
+*.out
+*.exe
+*.app
+bin/
+build/
+obj/
