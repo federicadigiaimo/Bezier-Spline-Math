@@ -237,6 +237,7 @@ All the source code and shader logic are located within the `src` directory.
 │   ├── glad.c               # OpenGL loader
 │   ├── lib.h                # General headers and dependencies
 │   └── vertexShaderC.glsl   # GLSL Vertex Shader
+├── .gitattributes         # GitHub language detection rules
 ├── .gitignore             # Git exclusion rules
 ├── LICENSE                # MIT License
 └── README.md              # Project documentation
