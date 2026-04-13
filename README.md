@@ -73,6 +73,9 @@ void drawScene_deCasteljau(void) {
 }
 ```
 ## **Real-Time Interaction: Interactive Control Point Manipulation**
+<p align="center">
+  <img src="img/mousedragging.gif" width="400" alt="The possibility to change CP's position.">
+</p>
 
 To provide an intuitive modeling experience, the application implements a **dynamic mouse-drag system**. This allows users to reshape curves in real-time by interacting directly with the control points (CP).
 
