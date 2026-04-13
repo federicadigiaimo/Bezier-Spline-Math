@@ -50,7 +50,7 @@ void de_casteljau_alghoritm(float t, float* result, int num_points, float points
 }
 ```
 
-###3. Integration in the Rendering Loop
+### **3. Integration in the Rendering Loop**
 
 The drawScene function manages the discretization process. It iterates through the defined steps (200 segments), invoking the algorithm for each t to update the vertex arrays used for rendering.
 ```cpp
