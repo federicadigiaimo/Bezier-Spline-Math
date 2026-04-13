@@ -11,6 +11,7 @@ This project focuses on the mathematical implementation and real-time visualizat
 <p align="center">
   <img src="img/decasteljau.gif" width="400" alt="Drawing of a Bezier Curve with the De Casteljau's Algorithm">
 </p>
+
 The core of the Bézier evaluation system is based on **De Casteljau's algorithm**, a numerically stable method used to obtain the points of a parametric curve $f(t)$ through geometric construction. While the algorithm is theoretically recursive, it has been implemented **iteratively** in this project to optimize performance and stack usage, which is a critical requirement for real-time graphics applications.
 
 ### **1. Mathematical Evaluation**
