@@ -220,3 +220,24 @@ if (NumPts > 1) {
     }
 }
 ```
+## Repository Structure
+
+All the source code and shader logic are located within the `src` directory.
+
+```text
+.
+├── img/                   # Documentation images and demo GIFs
+├── src/                   # Core implementation
+│   ├── Lab-01.cpp           # Main application logic
+│   ├── ShaderMaker.cpp      # Shader utility implementation
+│   ├── ShaderMaker.h        # Shader utility header
+│   ├── fragmentShaderC.glsl # GLSL Fragment Shader
+│   ├── gestione_callback.cpp # Input handling (mouse/keyboard)
+│   ├── gestione_callback.h  # Callback definitions
+│   ├── glad.c               # OpenGL loader
+│   ├── lib.h                # General headers and dependencies
+│   └── vertexShaderC.glsl   # GLSL Vertex Shader
+├── .gitignore             # Git exclusion rules
+├── LICENSE                # MIT License
+└── README.md              # Project documentation
+```
